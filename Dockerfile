@@ -1,12 +1,14 @@
 FROM python:3.10
 
-WORKDIR /mlflow
+WORKDIR /data
 
-RUN mkdir -p /mlflow/mlruns \
+RUN mkdir -p /data/backend \
     && pip install mlflow
 
-COPY run.sh /mlflow/run.sh
+VOLUME ["/data/backend"]
+
+COPY run.sh /data/run.sh
 
 EXPOSE 5000
 
-CMD ["/mlflow/run.sh"]
+CMD ["/data/run.sh"]

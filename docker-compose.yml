@@ -1,6 +1,13 @@
+version: '3'
+
 services:
-  mlflow-server:
-    container_name: mlflow-server
-    image: mlflow-server:latest
+  # db:
+  #   container_name: db
+  #   image: postgres:latest
+  tracker:
+    container_name: tracker
+    image: mlflow-tracker:latest
     ports:
       - "5000:5000"
+    volumes:
+      - ./mlflow/backend:/data/backend

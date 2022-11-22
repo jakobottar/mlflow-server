@@ -6,6 +6,7 @@ from mlflow import log_metric, log_param, log_artifacts
 if __name__ == "__main__":
     # TODO: this should be able to be handled by environment variables
     mlflow.set_tracking_uri("http://localhost:5000")
+    # mlflow.create_experiment("test")
     mlflow.set_experiment("test")
 
     # Log a parameter (key-value pair)
