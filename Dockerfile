@@ -2,8 +2,9 @@ FROM python:3.10
 
 WORKDIR /data
 
+# psycopg2 is needed for postgresql 
 RUN mkdir -p /data/backend \
-    && pip install mlflow
+    && pip install mlflow psycopg2
 
 VOLUME ["/data/backend"]
 
