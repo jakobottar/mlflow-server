@@ -1,16 +1,19 @@
 version: "3.7"
 
+volumes:
+  dbdata:
+
+
 services:
 
   db:
     image: postgres:latest
     environment:
-      - PGDATA=/var/lib/postgresql/data/pgdata
       - POSTGRES_DB=mlflowdb
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
-      - ./db:/var/lib/postgresql/data/pgdata
+      - dbdata:/var/lib/postgresql/data
 
   tracker:
     build: .
@@ -18,8 +21,6 @@ services:
     image: mlflow-tracker:latest
     ports:
       - "5000:5000"
-    volumes:
-      - ./mlflow/backend:/data/backend
     environment:
       - DB_HOST=db
       - DB_NAME=mlflowdb

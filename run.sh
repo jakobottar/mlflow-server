@@ -1,10 +1,12 @@
 #!/bin/bash
 
-echo "launching mlflow tracking server..."
+echo "upgrading db..."
+mlflow db upgrade postgresql+psycopg2://${DB_USER}:${DB_PASSWD}@${DB_HOST}/${DB_NAME}
 
 # backend is relative to server
 # artifact is relative to run
+echo "launching mlflow tracking server..."
 mlflow server \
-    --host 0.0.0.0 \
-    --backend-store-uri "./backend" \
-    --port 5000
+    --backend-store-uri postgresql+psycopg2://${DB_USER}:${DB_PASSWD}@${DB_HOST}/${DB_NAME} \
+    --default-artifact-root ${ARTIFACT_ROOT} \
+    --host 0.0.0.0
