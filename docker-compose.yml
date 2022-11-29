@@ -6,9 +6,7 @@ volumes:
 
 services:
 
-  # TODO: set up backups https://stackoverflow.com/a/29913462
   db:
-    container_name: db
     image: postgres:latest
     environment:
       - POSTGRES_DB=mlflowdb
