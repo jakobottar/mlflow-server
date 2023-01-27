@@ -8,6 +8,7 @@ services:
 
   db:
     image: postgres:latest
+    container_name: db
     environment:
       - POSTGRES_DB=mlflowdb
       - POSTGRES_USER=${POSTGRES_USER}
