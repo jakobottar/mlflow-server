@@ -1,0 +1,16 @@
+volumes:
+  minio_data:
+
+services:
+  minio:
+    image: quay.io/minio/minio:latest
+    container_name: minio
+    environment:
+      - MINIO_CONFIG_ENV_FILE=/etc/config.env
+    ports:
+      - 9000:9000
+      - 9090:9090
+    volumes:
+      - minio_data:/mnt/data
+      - ./config.env:/etc/config.env
+    command: [ "minio", "server", "--console-address", ":9090" ]
