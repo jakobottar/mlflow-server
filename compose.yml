@@ -1,5 +1,3 @@
-version: "3.7"
-
 volumes:
   dbdata:
 
@@ -28,6 +26,11 @@ services:
       - DB_NAME=mlflowdb
       - DB_USER=${POSTGRES_USER}
       - DB_PASSWD=${POSTGRES_PASSWORD}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - MLFLOW_S3_ENDPOINT_URL=${MINIO_URL}
+      - MLFLOW_S3_IGNORE_TLS=true
+      - ARTIFACT_ROOT=s3://${MINIO_BUCKET_NAME}/
     depends_on:
       - db
     restart: unless-stopped
