@@ -1,4 +1,5 @@
 outputs
 mlflow
 .python-version
+minio.env
 .env
