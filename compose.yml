@@ -1,6 +1,9 @@
 volumes:
   mlflow_dbdata:
     external: true
+  minio_data:
+    # make the volume using this: https://serverfault.com/a/1075353
+    external: true
 
 services:
 
@@ -13,7 +16,7 @@ services:
       - 9000:9000
       - 9090:9090
     volumes:
-      - /data:/mnt/data
+      - minio_data:/mnt/data
       - ./minio.env:/etc/config.env
     command: minio server --console-address :9090
     restart: unless-stopped
